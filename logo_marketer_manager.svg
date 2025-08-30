@@ -1,0 +1,53 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="rocketGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f97316;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Rocket Icon -->
+  <g transform="translate(10, 10)">
+    <!-- Rocket Body -->
+    <path d="M15 35 L15 45 L25 45 L25 35 Z" fill="url(#rocketGradient)" stroke="#1e293b" stroke-width="1"/>
+    
+    <!-- Rocket Nose -->
+    <path d="M15 35 L20 25 L25 35 Z" fill="url(#rocketGradient)" stroke="#1e293b" stroke-width="1"/>
+    
+    <!-- Rocket Fins -->
+    <path d="M15 45 L10 50 L12 45 Z" fill="#ef4444" stroke="#1e293b" stroke-width="0.5"/>
+    <path d="M25 45 L30 50 L28 45 Z" fill="#ef4444" stroke="#1e293b" stroke-width="0.5"/>
+    
+    <!-- Rocket Window -->
+    <circle cx="20" cy="35" r="2" fill="#60a5fa" stroke="#1e293b" stroke-width="0.5"/>
+    
+    <!-- Rocket Flame -->
+    <path d="M15 45 L18 55 L20 50 L22 55 L25 45 Z" fill="#f59e0b" opacity="0.8"/>
+    <path d="M18 45 L19 52 L20 48 L21 52 L22 45 Z" fill="#f97316" opacity="0.6"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="50" y="25" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="url(#logoGradient)">
+    Marketer
+  </text>
+  <text x="50" y="45" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="url(#logoGradient)">
+    Manager
+  </text>
+  
+  <!-- Decorative Elements -->
+  <circle cx="180" cy="15" r="3" fill="#60a5fa" opacity="0.6"/>
+  <circle cx="185" cy="25" r="2" fill="#3b82f6" opacity="0.4"/>
+  <circle cx="175" cy="35" r="2.5" fill="#1e40af" opacity="0.5"/>
+</svg> 

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preventa | MarketerManager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --muted: #f6f7f9;
+            --card: #ffffff;
+            --text: #1f2937;
+            --subtext: #6b7280;
+            --primary: #4285f4;
+            --primary-dark: #3367d6;
+            --accent: #22c55e;
+            --border: #e5e7eb;
+            --danger: #ef4444;
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: var(--text); background: var(--bg); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+        .nav { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+        .badge-preventa { background: var(--accent); color: #fff; font-weight: 600; padding: 4px 10px; border-radius: 999px; font-size: 12px; }
+        .hero { padding: 40px 0 10px; text-align: center; }
+        .hero h1 { font-size: clamp(28px, 5vw, 44px); line-height: 1.1; margin: 0 0 12px; }
+        .hero p { margin: 0 auto; max-width: 750px; color: var(--subtext); font-size: 16px; }
+        .promo { margin: 22px auto 0; max-width: 900px; background: var(--muted); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; }
+        .promo strong { color: var(--primary); }
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 22px 0; }
+        .stat { background: var(--muted); border: 1px solid var(--border); border-radius: 12px; padding: 14px; text-align: center; }
+        .stat .num { font-weight: 800; font-size: 22px; color: var(--primary-dark); }
+        .stat .lbl { font-size: 13px; color: var(--subtext); }
+        .integrations { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
+        .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(88px, 1fr)); gap: 10px; margin-top: 10px; }
+        .logoItem { background: var(--muted); border: 1px solid var(--border); border-radius: 10px; padding: 10px; font-size: 12px; text-align: center; color: var(--text); }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 26px 0; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; display: flex; flex-direction: column; }
+        .plan-name { font-weight: 700; font-size: 16px; margin: 0 0 6px; }
+        .price { display: flex; align-items: baseline; gap: 6px; margin: 8px 0 10px; }
+        .price .now { font-size: 34px; font-weight: 800; }
+        .price .usd { font-size: 14px; color: var(--subtext); }
+        .strike { color: var(--subtext); text-decoration: line-through; font-size: 13px; }
+        .off { background: #e8f0fe; color: var(--primary-dark); padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; width: fit-content; }
+        ul { margin: 14px 0 16px; padding: 0; list-style: none; color: var(--text); }
+        li { display: flex; gap: 8px; align-items: flex-start; margin: 8px 0; font-size: 14px; }
+        .check { color: var(--accent); font-weight: 900; }
+        .cta { margin-top: auto; display: grid; gap: 10px; }
+        .btn { border: 1px solid transparent; border-radius: 10px; padding: 12px 14px; font-weight: 700; cursor: pointer; text-align: center; }
+        .btn-primary { background: var(--primary); color: #fff; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-outline { background: #fff; border-color: var(--border); color: var(--text); }
+        .guarantee { font-size: 12px; color: var(--subtext); text-align: center; }
+        .gift { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: center; background: var(--muted); border: 1px solid var(--border); border-radius: 14px; padding: 14px; }
+        .gift .icon { width: 64px; height: 64px; display: grid; place-items: center; border-radius: 12px; background: #eef7ff; color: var(--primary); font-weight: 800; }
+        .gift h3 { margin: 0 0 6px; font-size: 16px; }
+        .gift p { margin: 0; color: var(--subtext); font-size: 14px; }
+        .faq { margin: 30px 0 10px; }
+        .faq h3 { margin: 0 0 8px; }
+        .footer { padding: 24px 0 40px; text-align: center; color: var(--subtext); font-size: 13px; }
+        .ribbon { position: absolute; top: 14px; right: -6px; background: var(--danger); color: #fff; padding: 4px 10px; transform: rotate(6deg); border-radius: 6px; font-size: 11px; font-weight: 800; }
+        .relative { position: relative; }
+        @media (max-width: 900px) { .grid, .stats { grid-template-columns: 1fr; } }
+    </style>
+    <script>
+        function checkout(plan) {
+            // Placeholder Stripe Checkout. Reemplazar con tu sessionId cuando Stripe esté listo
+            alert('Redirigiendo a Stripe para el plan: ' + plan + " (placeholder)\nLuego conectamos con Checkout Session real.");
+            // window.location.href = '/checkout?plan=' + encodeURIComponent(plan);
+        }
+        function descargarPDF() {
+            alert('Descarga de PDF (placeholder). Puedes subir tu PDF y enlazarlo aquí.');
+            // window.location.href = '/assets/guia-estrategias-marketer-manager.pdf';
+        }
+    </script>
+    <meta name="description" content="Preventa MarketerManager: publica y republica en redes, e-commerce y pagos, con 65% OFF y regalo de guía PDF de estrategias.">
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <div class="logo">
+                <img src="./logo_marketer_manager.svg" alt="Logo" height="28">
+                <span>MarketerManager</span>
+            </div>
+            <span class="badge-preventa">Preventa Activa</span>
+        </div>
+
+        <section class="hero">
+            <h1>Automatiza tu contenido y ventas en minutos</h1>
+            <p>Publica y republica en TikTok, Instagram, YouTube y X. Integra e‑commerce y pagos. Optimiza con IA. Súmate hoy y asegura precios de por vida en preventa.</p>
+            <div class="promo">
+                <span><strong>65% OFF</strong> en preventa • Usa cupones <strong>PREVENTA35</strong> o <strong>PREVENTA40</strong> para campañas especiales</span>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stat">
+                <div class="num">19+</div>
+                <div class="lbl">Redes sociales</div>
+            </div>
+            <div class="stat">
+                <div class="num">13+</div>
+                <div class="lbl">Plataformas e‑commerce</div>
+            </div>
+            <div class="stat">
+                <div class="num">8+</div>
+                <div class="lbl">Opciones cripto/pagos</div>
+            </div>
+        </section>
+
+        <section class="integrations">
+            <strong>Integraciones destacadas</strong>
+            <div class="logos">
+                <div class="logoItem">TikTok</div>
+                <div class="logoItem">Instagram</div>
+                <div class="logoItem">YouTube</div>
+                <div class="logoItem">X (Twitter)</div>
+                <div class="logoItem">Facebook</div>
+                <div class="logoItem">LinkedIn</div>
+                <div class="logoItem">Pinterest</div>
+                <div class="logoItem">Telegram</div>
+                <div class="logoItem">Shopify</div>
+                <div class="logoItem">Hotmart</div>
+                <div class="logoItem">Zapier</div>
+                <div class="logoItem">Stripe</div>
+                <div class="logoItem">Coinbase Commerce</div>
+                <div class="logoItem">NowPayments</div>
+                <div class="logoItem">Binance Pay</div>
+            </div>
+        </section>
+
+        <section class="grid">
+            <article class="card">
+                <div class="relative">
+                    <span class="off">-65% Preventa</span>
+                </div>
+                <h2 class="plan-name">Starter</h2>
+                <div class="price">
+                    <span class="now">$15</span>
+                    <span class="usd">USD / mes</span>
+                </div>
+                <div class="strike">$43 USD/mes</div>
+                <ul>
+                    <li><span class="check">✓</span> 5 cuentas conectadas</li>
+                    <li><span class="check">✓</span> Publicaciones ilimitadas</li>
+                    <li><span class="check">✓</span> Programación básica</li>
+                </ul>
+                <div class="cta">
+                    <button class="btn btn-primary" onclick="checkout('starter')">Comenzar con Starter</button>
+                    <div class="guarantee">Cancelas cuando quieras</div>
+                </div>
+            </article>
+
+            <article class="card relative">
+                <div class="ribbon">Más popular</div>
+                <div>
+                    <span class="off">-65% Preventa</span>
+                </div>
+                <h2 class="plan-name">Influencer</h2>
+                <div class="price">
+                    <span class="now">$27</span>
+                    <span class="usd">USD / mes</span>
+                </div>
+                <div class="strike">$77 USD/mes</div>
+                <ul>
+                    <li><span class="check">✓</span> 10 cuentas conectadas</li>
+                    <li><span class="check">✓</span> 5 cuentas de repost</li>
+                    <li><span class="check">✓</span> Calendario y recomendación de horario</li>
+                </ul>
+                <div class="cta">
+                    <button class="btn btn-primary" onclick="checkout('influencer')">Elegir Influencer</button>
+                    <div class="guarantee">Incluye soporte prioritario</div>
+                </div>
+            </article>
+
+            <article class="card">
+                <div>
+                    <span class="off">-65% Preventa</span>
+                </div>
+                <h2 class="plan-name">Pro</h2>
+                <div class="price">
+                    <span class="now">$58</span>
+                    <span class="usd">USD / mes</span>
+                </div>
+                <div class="strike">$166 USD/mes</div>
+                <ul>
+                    <li><span class="check">✓</span> Cuentas ilimitadas</li>
+                    <li><span class="check">✓</span> Reposts ilimitados</li>
+                    <li><span class="check">✓</span> Flujos n8n + IA avanzada</li>
+                </ul>
+                <div class="cta">
+                    <button class="btn btn-primary" onclick="checkout('pro')">Ir con Pro</button>
+                    <button class="btn btn-outline" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})">Ver preguntas frecuentes</button>
+                </div>
+            </article>
+        </section>
+
+        <section class="gift" style="margin: 10px 0 24px;">
+            <div class="icon">PDF</div>
+            <div>
+                <h3>Regalo de bienvenida: Guía PDF con métodos y estrategias</h3>
+                <p>Descárgala al activar tu plan. Incluye frameworks para 30 días de contenido, checklist de publicación, ideas para Reels/Shorts, y funnel rápido.</p>
+                <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+                    <button class="btn btn-outline" onclick="descargarPDF()">Ver demo del PDF</button>
+                    <button class="btn btn-primary" onclick="checkout('influencer')">Activar y recibir PDF</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq" id="faq">
+            <h3>Preguntas frecuentes</h3>
+            <div style="border-top:1px solid var(--border); padding-top:10px;">
+                <p><strong>¿Cómo aplico el 35% o 40% extra?</strong><br> Durante la preventa usamos cupones de campaña. Al abrir Checkout, ingresa <b>PREVENTA35</b> o <b>PREVENTA40</b> si está disponible.</p>
+                <p><strong>¿Puedo cancelar cuando quiera?</strong><br> Sí, tu suscripción es mensual sin permanencia.</p>
+                <p><strong>¿Incluye publicación automática?</strong><br> Sí. Empezamos con TikTok, Instagram, YouTube y X; expandimos a más canales con n8n.</p>
+                <p><strong>¿Cuándo recibo el PDF?</strong><br> Inmediatamente después de activar el plan (enlace de descarga en tu panel).</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            © <script>document.write(new Date().getFullYear());</script> MarketerManager · Precios de preventa por tiempo limitado · <a href="https://www.reach50.marketermanager.com" target="_blank" rel="noopener" style="color:#4285f4;">reach50.marketermanager.com</a>
+        </footer>
+    </div>
+    
+</body>
+<!-- Preview: abre este archivo en tu navegador: landing-preventa.html -->
+</html>
+
+
